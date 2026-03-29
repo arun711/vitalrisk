@@ -7,6 +7,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="VitalRisk">
 <meta name="theme-color" content="#060912">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="referrer" content="no-referrer">
 <title>VitalRisk</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -32,7 +37,7 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
 .lk-logo{font-size:52px;margin-bottom:8px}
 .lk-title{font-family:var(--fs);font-size:26px;font-weight:800;margin-bottom:4px}
 .lk-sub{font-size:13px;color:var(--sub);margin-bottom:36px}
-.lk-profiles{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px;margin-bottom:20px}
+.lk-profiles{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px;margin-bottom:20px;max-height:50vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .lk-card{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card2);border:1.5px solid var(--bdr2);border-radius:18px;cursor:pointer;transition:all .18s}
 .lk-card:active{transform:scale(.97);background:rgba(255,255,255,.13)}
 .lk-av{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:17px;font-weight:800;color:#fff;flex-shrink:0}
@@ -75,10 +80,10 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
   font-family:var(--fs);font-size:13px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0}
 #vp{flex:1;position:relative;overflow:hidden}
 .pg{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;
-  padding-bottom:32px;opacity:0;pointer-events:none;transform:translateX(30px);transition:none}
+  padding-bottom:calc(env(safe-area-inset-bottom,0px)+80px);opacity:0;pointer-events:none;transform:translateX(30px);transition:none}
 .pg::-webkit-scrollbar{display:none}
 .pg.active{opacity:1;pointer-events:all;transform:translateX(0)}
-#nav{flex-shrink:0;display:flex;padding:8px 0 calc(env(safe-area-inset-bottom,0px)+8px);
+#nav{flex-shrink:0;display:flex;padding:6px 0 calc(env(safe-area-inset-bottom,0px)+6px);
   background:rgba(6,9,18,.96);backdrop-filter:blur(20px);border-top:1px solid var(--bdr);z-index:20}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;
   background:none;border:none;cursor:pointer;color:var(--mut);font-size:9px;font-family:var(--fi);
@@ -105,7 +110,7 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
 @keyframes obOut{to{opacity:0;transform:translateY(-18px)}}
 .ob-wrap{display:flex;width:500%;height:100%;transition:transform .4s cubic-bezier(.65,-.05,.35,1.05)}
 .ob-sl{width:20%;flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:calc(env(safe-area-inset-top,0px)+52px) 24px calc(env(safe-area-inset-bottom,0px)+24px);text-align:center;overflow-y:auto}
+  justify-content:flex-start;padding:calc(env(safe-area-inset-top,0px)+56px) 24px calc(env(safe-area-inset-bottom,0px)+28px);text-align:center;overflow-y:auto}
 .ob-dots{position:absolute;top:calc(env(safe-area-inset-top,16px)+10px);left:50%;
   transform:translateX(-50%);display:flex;gap:6px;z-index:10}
 .od{width:20px;height:4px;border-radius:2px;background:var(--dim);transition:all .3s}
@@ -248,7 +253,7 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
 .slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;outline:none;cursor:pointer}
 .slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 .slhints{display:flex;justify-content:space-between;margin-top:7px;font-family:var(--fm);font-size:8px;color:var(--mut)}
-.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-start}
+.chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-start;width:100%}
 .chip{padding:10px 14px;border-radius:100px;border:1px solid var(--bdr);font-size:13px;color:var(--sub);cursor:pointer;background:transparent;transition:all .15s;min-height:44px;display:inline-flex;align-items:center;user-select:none;-webkit-user-select:none}
 .chip.on{background:rgba(255,59,48,.13);border-color:rgba(255,59,48,.4);color:var(--red)}
 /* Note field */
@@ -328,12 +333,12 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
 .ats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 16px 12px}
 .at{padding:10px 7px;background:var(--card);border:1px solid var(--bdr);border-radius:12px;text-align:center;min-width:0}
 .at-n{font-family:var(--fs);font-size:clamp(13px,4vw,18px);font-weight:800}
-.at-l{font-size:8px;color:var(--mut);margin-top:3px;font-family:var(--fm)}
+.at-l{font-size:8.5px;color:var(--mut);margin-top:3px;font-family:var(--fm);letter-spacing:.02em}
 /* Weight tracker */
 .wt-track{margin:0 16px 10px;padding:12px 14px;background:var(--card);border:1px solid var(--bdr);border-radius:13px}
 .wt-row{display:flex;align-items:center;gap:8px;margin-top:8px}
 .wt-inp{flex:1;background:var(--card2);border:1px solid var(--bdr2);border-radius:9px;padding:8px 11px;font-family:var(--fm);font-size:16px;color:var(--txt);outline:none;-webkit-user-select:text;user-select:text}
-.wt-btn{padding:8px 14px;border-radius:9px;border:none;background:var(--red);color:#fff;font-family:var(--fs);font-size:12px;font-weight:700;cursor:pointer}
+.wt-btn{padding:10px 16px;border-radius:9px;border:none;background:var(--red);color:#fff;font-family:var(--fs);font-size:13px;font-weight:700;cursor:pointer;min-height:44px;white-space:nowrap}
 .wt-hist{display:flex;gap:5px;margin-top:9px;overflow-x:auto;padding-bottom:2px}
 .wt-pt{text-align:center;flex-shrink:0}
 .wt-bar-wrap{height:36px;display:flex;align-items:flex-end}
@@ -368,7 +373,7 @@ html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fi
 /* ── MODALS ── */
 .mo{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);display:none;align-items:flex-end;justify-content:center}
 .mo.on{display:flex}
-.ms-sheet{background:#0b1525;border:1px solid var(--bdr);border-radius:24px 24px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px)+30px);width:100%;max-width:430px;animation:mUp .3s cubic-bezier(.35,0,.15,1)}
+.ms-sheet{background:#0b1525;border:1px solid var(--bdr);border-radius:24px 24px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px)+30px);width:100%;max-width:430px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:mUp .3s cubic-bezier(.35,0,.15,1)}
 @keyframes mUp{from{transform:translateY(100%)}to{transform:none}}
 .mhandle{width:36px;height:4px;background:var(--bdr2);border-radius:2px;margin:0 auto 18px}
 .mtitle{font-family:var(--fs);font-size:18px;font-weight:800;margin-bottom:5px}
@@ -566,57 +571,111 @@ body.light .hfbtn.f-caution.on{color:#000;}
 .lk-del:active{background:rgba(255,59,48,.28)}
 
 
-/* ── RESPONSIVE: Small screens (iPhone SE, 375px and below) ── */
+/* ══ RESPONSIVE SYSTEM ══════════════════════════════════════
+   Base: fluid layout using clamp() and vw units
+   Breakpoints: <390 (SE) | 390-430 (standard) | 430+ (large)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── iPhone SE / small Android (≤390px) ── */
 @media screen and (max-width:390px){
-  .ats{gap:5px;margin:0 12px 10px}
-  .at{padding:8px 4px;border-radius:10px}
-  .at-n{font-size:13px}
-  .at-l{font-size:7px}
-  .qrow{gap:5px;margin:0 12px 10px}
-  .qb{padding:8px 4px}
-  .qn{font-size:14px}
-  .ph{padding:14px 14px 6px}
-  .pttl{font-size:22px}
-  .sec{padding:5px 14px}
-  .secrow{padding:5px 14px}
-  .card{margin:0 12px 8px;padding:12px}
-  .chip{padding:9px 10px;font-size:12px}
-  .ci-bigval{font-size:38px}
-  .ci-q{font-size:17px}
-  .pref-block{margin:0 12px 10px}
-  .prof-sub{font-size:10px}
-  .badge{padding:8px 4px}
+  .ats{gap:5px;margin:0 10px 10px}
+  .at{padding:7px 3px;border-radius:10px}
+  .at-n{font-size:13px !important}
+  .at-l{font-size:6.5px}
+  .qrow{gap:5px;margin:0 10px 10px}
+  .qb{padding:7px 3px}
+  .qn{font-size:14px !important}
+  .ql{font-size:7px}
+  .ph{padding:12px 12px 6px}
+  .pttl{font-size:20px !important}
+  .sec,.secrow{padding:5px 12px}
+  .card{margin:0 10px 8px;padding:11px 12px}
+  .chip{padding:8px 9px;font-size:11px;min-height:40px}
+  .ci-bigval{font-size:36px}
+  .ci-q{font-size:16px}
+  .ci-hint{font-size:10px}
+  .pref-block{margin:0 10px 10px}
+  .prow{padding:11px 13px}
+  .pl{font-size:12px}
+  .pv{font-size:11px}
+  .prof-sub{font-size:9.5px}
+  .badge{padding:7px 4px}
   .bi{font-size:18px}
   .bn{font-size:7px}
   .bd{font-size:6px}
-  .wsumm-n{font-size:14px}
-  .wsumm-l{font-size:7px}
+  .wsumm-n{font-size:13px}
+  .wsumm-l{font-size:6.5px}
+  .wsumm-delta{font-size:8px}
   .mn-t{font-size:14px}
-  .hi{margin:0 12px 7px;padding:9px 11px}
-  .wtrack{margin:0 12px 8px}
-  #hdr{padding:calc(env(safe-area-inset-top,0px)+10px) 14px 10px}
-  .hname{font-size:17px}
-  .hav{width:28px;height:28px;font-size:11px}
-  .nb{font-size:8px}
-  .nb .ni{font-size:18px}
-  .orb-ring{width:148px;height:148px}
-  .orb-n{font-size:42px}
-  .orb-tag{font-size:8px}
-  .ins-stat .ins-n{font-size:16px}
-  .pin-key{width:64px;height:64px;font-size:20px}
-  .pin-grid{grid-template-columns:repeat(3,64px);gap:10px}
+  .hi{margin:0 10px 6px;padding:9px 10px;gap:8px}
+  .hi-circ{width:36px;height:36px;font-size:12px}
+  .hi-date{font-size:8.5px;min-width:34px}
+  .wtrack{margin:0 10px 8px;padding:11px 12px}
+  .wglasses{font-size:16px;gap:3px}
+  #hdr{padding:calc(env(safe-area-inset-top,0px)+10px) 12px 9px}
+  .hname{font-size:16px}
+  .hav{width:27px;height:27px;font-size:10px}
+  .nb{font-size:7.5px;padding:7px 1px}
+  .nb .ni{font-size:17px}
+  .nbdot{right:calc(50% - 12px)}
+  .orb-ring{width:140px;height:140px}
+  .orb-n{font-size:40px !important}
+  .orb-tag{font-size:7.5px}
+  .orb-lbl{font-size:8px}
+  .zpill{font-size:9px;padding:4px 12px}
+  .ins-stat{padding:8px 5px}
+  .ins-n{font-size:17px}
+  .ins-l{font-size:8px}
+  .ins-card{margin:0 10px 8px;padding:11px 12px}
+  .ins-t{font-size:12px}
+  .ins-b{font-size:11px}
+  .pin-key{width:62px;height:62px;font-size:19px}
+  .pin-grid{grid-template-columns:repeat(3,62px);gap:9px}
+  .pin-dots{gap:13px;margin-bottom:26px}
+  .ms-sheet{padding:16px 16px calc(env(safe-area-inset-bottom,0px)+24px)}
+  .mtitle{font-size:16px}
+  .msub{font-size:12px}
+  .mbtn{padding:11px;font-size:13px}
+  .ob-ic{font-size:44px}
+  .ob-h{font-size:24px}
+  .ob-p{font-size:12px;margin-bottom:16px}
+  .ob-btn{padding:13px;font-size:14px}
+  .lk-card{padding:11px 13px;gap:11px}
+  .lk-av{width:40px;height:40px;font-size:15px}
+  .lk-name{font-size:14px}
+  .lk-hint{font-size:10px}
+  .lk-add{padding:11px}
+  .sdebt{margin:0 10px 8px;padding:10px 12px}
+  .gbar{margin:0 10px 8px;padding:10px 12px}
+  .qwins{gap:5px;margin:0 10px 8px}
+  .qw{padding:8px 3px}
+  .qw-i{font-size:16px}
+  .alert{margin:0 10px 8px;padding:9px 11px}
+  .quote{margin:0 10px 8px;padding:10px 12px}
+  .ai-card{margin:0 10px 8px;padding:11px 12px}
+  .ins-stat{padding:7px 4px}
+  .wsumm{margin:0 10px 8px;padding:11px 12px}
 }
 
-/* ── RESPONSIVE: Standard phones (391px–430px) ── */
+/* ── iPhone 13/14/15 standard (390–430px) ── */
 @media screen and (min-width:391px) and (max-width:430px){
-  .at-n{font-size:clamp(14px,4vw,18px)}
+  .at-n{font-size:15px}
+  .at-l{font-size:7.5px}
   .chip{font-size:12px;padding:9px 12px}
+  .qn{font-size:16px}
 }
 
-/* ── RESPONSIVE: Large phones / tablets (431px+) ── */
+/* ── iPhone 14/15 Plus, large Android (431px+) ── */
 @media screen and (min-width:431px){
-  #app{max-width:430px}
+  #app,.mo-inner{max-width:430px}
   .ats{grid-template-columns:repeat(3,1fr)}
+  .at-n{font-size:18px}
+}
+
+/* ── Universal: force stats always 3 per row ── */
+.ats{
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
 }
 
 </style>
@@ -925,7 +984,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
         <div class="prow" onclick="openMo('clearConfirm')"><div class="pl" style="color:var(--red)">🗑️ Reset All Data</div><div class="pv" style="color:var(--red)">Clear</div></div>
       </div>
       <div style="padding:12px 16px;text-align:center;font-size:10px;color:var(--mut);line-height:1.8">
-        VitalRisk v9.1 · Health awareness only · Not a medical device<br>All data stored locally · <span style="color:var(--org)">💾 Back up regularly</span> — iOS may clear data after 7+ days unused
+        VitalRisk v9.2 · Health awareness only · Not a medical device<br>All data stored locally · <span style="color:var(--org)">💾 Back up regularly</span> — iOS may clear data after 7+ days unused
       </div>
     </div>
   </div>
@@ -1163,7 +1222,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
     <div class="mtitle">🤖 AI Tips Setup</div>
     <div class="msub">Add your Anthropic API key to unlock personalised AI health tips after every check-in. Stored only on this device, never shared.</div>
     <div class="mfld"><span>🔑</span><input type="password" id="apiKeyInp" placeholder="sk-ant-api03-..." autocomplete="off" style="-webkit-user-select:text;user-select:text" maxlength="200"></div>
-    <div style="font-size:10px;color:var(--mut);margin-bottom:14px;line-height:1.65">Free key at <strong style="color:var(--blu)">console.anthropic.com</strong> → API Keys → Create key</div>
+    <div style="font-size:10px;color:var(--mut);margin-bottom:14px;line-height:1.65">Free key at <strong style="color:var(--blu)">console.anthropic.com</strong> → API Keys → Create key.<br><span style="color:var(--org)">⚠️ Key stored on this device only. Never share it.</span></div>
     <button class="mbtn" onclick="saveApiKey()">✓ Save &amp; Enable AI Tips</button>
     <button class="mbtn-g" style="color:var(--red)" onclick="removeApiKey()">🗑 Remove Key</button>
     <button class="mbtn-g" onclick="closeMo('apiKey')">Cancel</button>
@@ -1198,7 +1257,7 @@ const SESS_KEY = 'vr_active'; // sessionStorage — clears on tab close = auto-l
 const AV_COLORS = ['#ff3b30','#0a84ff','#30d158','#bf5af2','#ff9500','#5ac8fa','#ff375f','#ffd60a'];
 
 function getProfileIds() { try { return JSON.parse(localStorage.getItem(PROFILES_KEY))||[]; } catch { return []; } }
-function saveProfileIds(ids) { localStorage.setItem(PROFILES_KEY,JSON.stringify(ids)); }
+function saveProfileIds(ids) { const _safe=ids.filter(id=>typeof id==='string'&&id.length<40); localStorage.setItem(PROFILES_KEY,JSON.stringify(_safe)); }
 function getProfileKey(id) { return 'vr_'+id; }
 function getActiveId() { return sessionStorage.getItem(SESS_KEY)||null; }
 function setActiveId(id) { sessionStorage.setItem(SESS_KEY,id); }
@@ -1208,11 +1267,24 @@ function newStore() {
 }
 function load() {
   const id=getActiveId(); if(!id) return newStore();
-  try { return JSON.parse(localStorage.getItem(getProfileKey(id)))||newStore(); } catch { return newStore(); }
+  try {
+    const raw=JSON.parse(localStorage.getItem(getProfileKey(id)));
+    if(!raw||typeof raw!=='object') return newStore();
+    // Ensure logs is always array with valid scores
+    if(!Array.isArray(raw.logs)) raw.logs=[];
+    raw.logs=raw.logs.filter(l=>l&&typeof l.date==='string'&&typeof l.score==='number'&&l.score>=0&&l.score<=100);
+    return raw;
+  } catch { return newStore(); }
 }
 function save(d) {
   const id=getActiveId(); if(!id) return;
-  try { localStorage.setItem(getProfileKey(id),JSON.stringify(d)); } catch {}
+  try {
+    localStorage.setItem(getProfileKey(id),JSON.stringify(d));
+  } catch(e) {
+    if(e.name==='QuotaExceededError'||e.name==='NS_ERROR_DOM_QUOTA_REACHED'||e.code===22){
+      toast('⚠️ Storage full! Go to Profile → Backup & Restore to back up, then Reset Data.');
+    }
+  }
 }
 function deleteProfile(id) {
   localStorage.removeItem(getProfileKey(id));
@@ -1246,7 +1318,7 @@ function renderLock() {
     }
     return`<div class="lk-card" onclick="selectProfile('${id}')">
       <div class="lk-av" style="background:${col}">${init}</div>
-      <div class="lk-info"><div class="lk-name">${p.name||'User'}</div><div class="lk-hint">${hint}</div></div>
+      <div class="lk-info"><div class="lk-name">${esc(p.name||'User')}</div><div class="lk-hint">${esc(hint)}</div></div>
       <div class="lk-lock-ic">${hasPin?'🔒':'›'}</div>
       <button class="lk-del" onclick="event.stopPropagation();confirmDeleteProfile('${id}','${(p.name||'User').replace(/'/g,'')}')" title="Delete profile">✕</button>
     </div>`;
@@ -1733,6 +1805,11 @@ async function getAITip(score,raw,inputs){
   if(d.aiCache&&d.aiCache[td])return d.aiCache[td];
   const apiKey=getApiKey();
   if(!apiKey)return null;
+  // Rate limit: max 10 AI calls per day across all cache misses
+  const _callKey='vr_aicalls_'+td;
+  const _calls=parseInt(localStorage.getItem(_callKey)||'0');
+  if(_calls>=10){return null;}
+  localStorage.setItem(_callKey,String(_calls+1));
   const worst=Object.entries(raw).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>k).join(', ');
   const prompt=`Health coach. Risk score: ${score}/100. Top risks: ${worst}. Sleep: ${inputs.sleep}h, Water: ${inputs.water} glasses, Stress: ${['calm','mild','high','crisis'][inputs.stress]}, Diet: ${['junk','mixed','clean'][inputs.diet]}, Exercise: ${['none','walk','gym','intense'][inputs.ex]}, Substances: ${['none','alcohol','smoking','both'][inputs.sub]}, Screen: ${inputs.screen}h. Give one specific actionable tip for tonight. Max 35 words.`;
   try{
@@ -1905,7 +1982,7 @@ function renderHome(){
   const sb=document.getElementById('sbadge'),ciDot=document.getElementById('ciDot');
   renderWater();restoreWins();
   if(ciDot)ciDot.classList.toggle('on',!tl);
-  document.getElementById('hdrDate').textContent=new Date().toLocaleDateString('en',{weekday:'long',day:'numeric',month:'short'});
+  document.getElementById('hdrDate').textContent=new Date().toLocaleDateString('en',window.innerWidth<390?{weekday:'short',day:'numeric',month:'short'}:{weekday:'long',day:'numeric',month:'short'});
   if(!tl){
     empty.style.display='block';data.style.display='none';
     document.getElementById('homeAlert').innerHTML='';
@@ -2180,7 +2257,7 @@ function renderWtChart(){
   const toGo=wGoal&&latest?Math.round(Math.abs(kgToUnit(latest,_wUnit)-kgToUnit(wGoal,_wUnit))*10)/10:0;
   const wGoalDisp=wGoal?kgToUnit(wGoal,_wUnit):null;
   const goalHtml=wGoal?`<div class="wg-row"><span style="font-size:11px;color:var(--sub)">🎯 Goal: ${wGoalDisp} ${_wUnit}</span><span style="font-size:11px;color:${goalColor}">${latest&&latest<=wGoal?'✅ Reached!':toGo+' '+_wUnit+' to go · tap Goal to clear'}</span></div><div class="wg-prog"><div class="wg-fil" style="width:${goalFill}%;background:${goalColor}"></div></div>`:'';
-  el.innerHTML=`<div class="sec">⚖️ Weight Tracker</div><div class="wt-track"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${latestDisp!=null?`${latestDisp} ${_wUnit} ${trend}`:'No weight logged yet'}</span>${bmi?`<span style="font-family:'DM Mono',monospace;font-size:11px;color:${bmi<18.5||bmi>25?'var(--org)':'var(--grn)'}">BMI ${bmi}</span>`:''}</div>${p.height?`<div style="font-size:10px;color:var(--mut);margin-bottom:8px">Height: ${p.height} cm</div>`:''}${goalHtml}<div class="wt-row"><input type="number" class="wt-inp" id="wtInput" placeholder="Log weight" min="20" max="660" step=".1"><button class="wt-btn" onclick="logWeight()">Log</button></div><div class="wg-row" style="margin-top:6px"><input type="number" class="wt-inp" id="wtGoalInput" placeholder="Set goal weight" min="20" max="660" step=".1" style="font-size:12px" value="${wGoal?kgToUnit(wGoal,_wUnit):''}"><button class="wt-btn" style="font-size:11px;background:rgba(10,132,255,.8)" onclick="saveWeightGoal()">Goal</button></div>${bars?`<div class="wt-hist" style="margin-top:10px">${bars}</div>`:'<div style="font-size:10px;color:var(--mut);margin-top:8px">Log your weight regularly to track trends.</div>'}</div>`;
+  el.innerHTML=`<div class="sec">⚖️ Weight Tracker</div><div class="wt-track"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><span style="font-size:13px;font-weight:600">${latestDisp!=null?`${latestDisp} ${_wUnit} ${trend}`:'No weight logged yet'}</span>${bmi?`<span style="font-family:'DM Mono',monospace;font-size:11px;color:${bmi<18.5||bmi>25?'var(--org)':'var(--grn)'}">BMI ${bmi}</span>`:''}</div>${p.height?`<div style="font-size:10px;color:var(--mut);margin-bottom:8px">Height: ${p.height} cm</div>`:''}${goalHtml}<div class="wt-row"><input type="number" class="wt-inp" id="wtInput" placeholder="Log weight" min="20" max="660" step=".1" inputmode="decimal"><button class="wt-btn" onclick="logWeight()">Log</button></div><div class="wg-row" style="margin-top:6px"><input type="number" class="wt-inp" id="wtGoalInput" placeholder="Set goal weight" min="20" max="660" step=".1" style="font-size:16px" value="${wGoal?kgToUnit(wGoal,_wUnit):''}"><button class="wt-btn" style="font-size:11px;background:rgba(10,132,255,.8)" onclick="saveWeightGoal()">Goal</button></div>${bars?`<div class="wt-hist" style="margin-top:10px">${bars}</div>`:'<div style="font-size:10px;color:var(--mut);margin-top:8px">Log your weight regularly to track trends.</div>'}</div>`;
 }
 
 // ═══════════════════════════════════════════════
@@ -2730,6 +2807,10 @@ function checkStart(){
   renderLock();
 }
 
+// Security: prevent clickjacking
+if(window.top!==window.self){
+  try{window.top.location=window.self.location;}catch(e){document.body.innerHTML='<div style="padding:40px;font-family:sans-serif;text-align:center"><h2>⚠️ Security Error</h2><p>VitalRisk cannot run inside a frame.</p></div>';}
+}
 document.addEventListener('DOMContentLoaded',()=>{initTheme();checkStart();});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
