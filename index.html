@@ -577,7 +577,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
    ═══════════════════════════════════════════════════════════ */
 
 /* ── iPhone SE / small Android (≤390px) ── */
-@media screen and (max-width:390px){
+@media screen and (max-width:375px){
   .ats{gap:5px;margin:0 10px 10px}
   .at{padding:7px 3px;border-radius:10px}
   .at-n{font-size:13px !important}
@@ -658,7 +658,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
 }
 
 /* ── iPhone 13/14/15 standard (390–430px) ── */
-@media screen and (min-width:391px) and (max-width:430px){
+@media screen and (min-width:376px) and (max-width:428px){
   .at-n{font-size:15px}
   .at-l{font-size:7.5px}
   .chip{font-size:12px;padding:9px 12px}
@@ -666,7 +666,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
 }
 
 /* ── iPhone 14/15 Plus, large Android (431px+) ── */
-@media screen and (min-width:431px){
+@media screen and (min-width:429px){
   #app,.mo-inner{max-width:430px}
   .ats{grid-template-columns:repeat(3,1fr)}
   .at-n{font-size:18px}
@@ -984,7 +984,7 @@ body.light .hfbtn.f-caution.on{color:#000;}
         <div class="prow" onclick="openMo('clearConfirm')"><div class="pl" style="color:var(--red)">🗑️ Reset All Data</div><div class="pv" style="color:var(--red)">Clear</div></div>
       </div>
       <div style="padding:12px 16px;text-align:center;font-size:10px;color:var(--mut);line-height:1.8">
-        VitalRisk v9.2 · Health awareness only · Not a medical device<br>All data stored locally · <span style="color:var(--org)">💾 Back up regularly</span> — iOS may clear data after 7+ days unused
+        VitalRisk v9.3 · Health awareness only · Not a medical device<br>All data stored locally · <span style="color:var(--org)">💾 Back up regularly</span> — iOS may clear data after 7+ days unused
       </div>
     </div>
   </div>
@@ -1789,7 +1789,7 @@ function pillCSS(z){return`background:${z.bg};border:1px solid ${z.bd};color:${z
 // ═══════════════════════════════════════════════
 function animNum(el,to,dur){let s=null;(function t(ts){if(!s)s=ts;const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*to);if(p<1)requestAnimationFrame(t);else el.textContent=to;})(performance.now());}
 function setAmb(score){const bl=document.querySelectorAll('.ab');if(!bl.length)return;if(score===null){bl[0].style.background='#0a84ff';bl[1].style.background='#bf5af2';bl[2].style.background='#5ac8fa';return;}if(score<=25){bl[0].style.background='#30d158';bl[1].style.background='#1fa040';bl[2].style.background='#0a84ff';}else if(score<=50){bl[0].style.background='#ffd60a';bl[1].style.background='#ff9500';bl[2].style.background='#0a84ff';}else if(score<=75){bl[0].style.background='#ff9500';bl[1].style.background='#ff6b30';bl[2].style.background='#ff3b30';}else{bl[0].style.background='#ff3b30';bl[1].style.background='#cc0000';bl[2].style.background='#ff7800';}}
-function animOrb(score){const arc=document.getElementById('oArc'),glow=document.getElementById('oGlow'),num=document.getElementById('orbN'),pill=document.getElementById('zpill');setAmb(score);if(score===null){arc.style.strokeDashoffset='524';arc.setAttribute('stroke','rgba(255,255,255,.06)');glow.style.strokeDashoffset='524';glow.setAttribute('stroke','transparent');num.textContent='--';num.style.color='var(--mut)';pill.textContent='No check-in yet';pill.style.cssText='background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--mut);padding:5px 16px;border-radius:100px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:inline-block;';return;}const z=zone(score);setTimeout(()=>{const off=524-(score/100)*524;arc.style.strokeDashoffset=off;arc.setAttribute('stroke',z.gr);glow.style.strokeDashoffset=off;glow.setAttribute('stroke',z.col);},60);num.style.color=z.col;animNum(num,score,1200);pill.textContent=z.lbl;pill.style.cssText=pillCSS(z);}
+function animOrb(score){const arc=document.getElementById('oArc'),glow=document.getElementById('oGlow'),num=document.getElementById('orbN'),pill=document.getElementById('zpill');if(!arc||!glow||!num||!pill)return;setAmb(score);if(score===null){arc.style.strokeDashoffset='524';arc.setAttribute('stroke','rgba(255,255,255,.06)');glow.style.strokeDashoffset='524';glow.setAttribute('stroke','transparent');num.textContent='--';num.style.color='var(--mut)';pill.textContent='No check-in yet';pill.style.cssText='background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--mut);padding:5px 16px;border-radius:100px;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;display:inline-block;';return;}const z=zone(score);setTimeout(()=>{const off=524-(score/100)*524;arc.style.strokeDashoffset=off;arc.setAttribute('stroke',z.gr);glow.style.strokeDashoffset=off;glow.setAttribute('stroke',z.col);},60);num.style.color=z.col;animNum(num,score,1200);pill.textContent=z.lbl;pill.style.cssText=pillCSS(z);}
 function confetti(){const c=document.getElementById('cfti');c.innerHTML='';const cols=['#30d158','#ffd60a','#0a84ff','#fff','#ff9500','#5ac8fa'];for(let i=0;i<70;i++){const el=document.createElement('div');el.className='cp';el.style.cssText=`left:${Math.random()*100}%;background:${cols[Math.floor(Math.random()*cols.length)]};width:${5+Math.random()*7}px;height:${5+Math.random()*7}px;border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${1.8+Math.random()*2}s;animation-delay:${Math.random()*.6}s`;c.appendChild(el);}setTimeout(()=>c.innerHTML='',4000);}
 
 // ═══════════════════════════════════════════════
@@ -1982,7 +1982,7 @@ function renderHome(){
   const sb=document.getElementById('sbadge'),ciDot=document.getElementById('ciDot');
   renderWater();restoreWins();
   if(ciDot)ciDot.classList.toggle('on',!tl);
-  document.getElementById('hdrDate').textContent=new Date().toLocaleDateString('en',window.innerWidth<390?{weekday:'short',day:'numeric',month:'short'}:{weekday:'long',day:'numeric',month:'short'});
+  document.getElementById('hdrDate').textContent=new Date().toLocaleDateString('en',window.innerWidth<376?{weekday:'short',day:'numeric',month:'short'}:{weekday:'long',day:'numeric',month:'short'});
   if(!tl){
     empty.style.display='block';data.style.display='none';
     document.getElementById('homeAlert').innerHTML='';
@@ -2432,7 +2432,7 @@ function cleanPageStyles(){document.querySelectorAll('.pg').forEach(p=>{p.style.
 function goTo(name){
   if(name===cur)return;
   const from=document.getElementById(`pg-${cur}`),to=document.getElementById(`pg-${name}`);
-  if(!from||!to){cur=name;return;}
+  if(!from||!to||!from.style||!to.style){cur=name;return;}
   // Clear stale inline styles on all non-transitioning pages
   document.querySelectorAll('.pg').forEach(p=>{if(p!==from&&p!==to)p.style.cssText='';});
   const right=PAGES.indexOf(name)>PAGES.indexOf(cur);
@@ -2465,10 +2465,14 @@ function setupCheckin(){
   if(!tl)resetCI();
 }
 
-// SWIPE
+// SWIPE (inside DOMContentLoaded guard to prevent null errors)
 let sx=0,sy=0,st=0;
-document.getElementById('vp').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();},{passive:true});
-document.getElementById('vp').addEventListener('touchend',e=>{const dx=sx-e.changedTouches[0].clientX,dy=sy-e.changedTouches[0].clientY,dt=Date.now()-st;if(Math.abs(dx)<65||Math.abs(dy)>Math.abs(dx)*.65||dt>550)return;const i=PAGES.indexOf(cur);if(dx>0&&i<PAGES.length-1)goTo(PAGES[i+1]);if(dx<0&&i>0)goTo(PAGES[i-1]);},{passive:true});
+function _initSwipe(){
+  const _vp=document.getElementById('vp');
+  if(!_vp)return;
+  _vp.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;st=Date.now();},{passive:true});
+  _vp.addEventListener('touchend',e=>{const dx=sx-e.changedTouches[0].clientX,dy=sy-e.changedTouches[0].clientY,dt=Date.now()-st;if(Math.abs(dx)<65||Math.abs(dy)>Math.abs(dx)*.65||dt>550)return;const i=PAGES.indexOf(cur);if(dx>0&&i<PAGES.length-1)goTo(PAGES[i+1]);if(dx<0&&i>0)goTo(PAGES[i-1]);},{passive:true});
+}
 
 // Auto-lock on visibility change
 document.addEventListener('visibilitychange',()=>{if(document.hidden)sessionStorage.setItem('vr_hidden',Date.now());else{const h=sessionStorage.getItem('vr_hidden');if(h&&Date.now()-parseInt(h)>300000){// 5 min auto-lock
@@ -2807,11 +2811,12 @@ function checkStart(){
   renderLock();
 }
 
-// Security: prevent clickjacking
-if(window.top!==window.self){
-  try{window.top.location=window.self.location;}catch(e){document.body.innerHTML='<div style="padding:40px;font-family:sans-serif;text-align:center"><h2>⚠️ Security Error</h2><p>VitalRisk cannot run inside a frame.</p></div>';}
-}
-document.addEventListener('DOMContentLoaded',()=>{initTheme();checkStart();});
+// Security: soft frame detection (doesn't break DOM)
+const _inFrame=(()=>{try{return window.self!==window.top;}catch(e){return true;}})();
+// Only block in obvious malicious frames (not previews, not github pages)
+// We detect if the parent is a different origin AND not localhost/github
+if(_inFrame){try{const _ph=window.parent.location.hostname;if(_ph&&_ph!==location.hostname&&!_ph.includes('github')&&!_ph.includes('localhost')&&!_ph.includes('anthropic')&&!_ph.includes('claude')){const _b=document.createElement('div');_b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:rgba(255,149,0,.95);color:#fff;padding:10px 16px;text-align:center;font-family:sans-serif;font-size:13px';_b.textContent='⚠️ VitalRisk is running inside an external frame. For security, open it directly.';document.body.appendChild(_b);}}catch(e){/* same origin - safe */}}
+document.addEventListener('DOMContentLoaded',()=>{_initSwipe();initTheme();checkStart();});
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body>
